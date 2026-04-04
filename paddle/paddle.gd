@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Paddle
 
 const AI_REACTIVITY: int = 900
-const AI_DEADZONE: float = 10.0
+const AI_DEADZONE: float = 15.0
 
 @export var ball_system: BallSystem
 @export var paddle_binding: PaddleBinding
@@ -56,7 +56,7 @@ func _get_ai_direction() -> float:
 			closest_distance = distance
 			closest_ball = ball
 
-	var y_distance = closest_ball.position.y - position.y
+	var y_distance: float = closest_ball.position.y - position.y
 	if abs(y_distance) < AI_DEADZONE:
 		return 0
 	

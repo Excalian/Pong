@@ -82,7 +82,7 @@ position = Vector2(249, 72)
 collision_layer = 3
 ball_system = NodePath("../BallSystem")
 paddle_binding = SubResource("Resource_u5sy4")
-speed = 100.0
+speed = 70.0
 
 [node name="BallSystem" type="Node2D" parent="." unique_id=26258847 node_paths=PackedStringArray("goal_system")]
 script = ExtResource("8_gee14")
