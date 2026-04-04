@@ -1,5 +1,10 @@
+"""
+Provides the paddle all the data nessasary to operate.
+"""
+
 extends Resource
-class_name PlayerBinding
+class_name PaddleBinding
+
 
 @export var up_key: String
 @export var down_key: String

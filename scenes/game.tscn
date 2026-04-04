@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://djwewioeynbpj"]
 
-[ext_resource type="PackedScene" uid="uid://bkadht57160lf" path="res://scenes/paddle.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://bkadht57160lf" path="res://paddle/paddle.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://dhccamfjmxcps" path="res://scenes/goal.tscn" id="2_gee14"]
 [ext_resource type="Script" uid="uid://dedtn3x6hh51" path="res://scripts/goal_system.gd" id="2_iywne"]
-[ext_resource type="PackedScene" uid="uid://de78u6sepvyir" path="res://balls/ball/ball.tscn" id="2_yqjtg"]
 [ext_resource type="Resource" uid="uid://qnupjfllbujj" path="res://player/player_one.tres" id="3_u5sy4"]
 [ext_resource type="Resource" uid="uid://c84qjgtw3pg2l" path="res://player/player_two.tres" id="4_gee14"]
-[ext_resource type="Script" uid="uid://cx2dpugm5qabv" path="res://player/player_binding.gd" id="6_u5sy4"]
-[ext_resource type="Script" uid="uid://dayr77wo7mf5n" path="res://scripts/ball_system.gd" id="8_gee14"]
+[ext_resource type="Script" uid="uid://cx2dpugm5qabv" path="res://paddle/paddle_binding.gd" id="5_u5sy4"]
+[ext_resource type="Script" uid="uid://dayr77wo7mf5n" path="res://balls/ball_system.gd" id="8_gee14"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lnu2h"]
 friction = 0.0
@@ -22,17 +21,18 @@ normal = Vector2(0, 1)
 size = Vector2(10, 144)
 
 [sub_resource type="Resource" id="Resource_gee14"]
-script = ExtResource("6_u5sy4")
+script = ExtResource("5_u5sy4")
 up_key = "up_w"
 down_key = "down_s"
 player_data = ExtResource("3_u5sy4")
 metadata/_custom_type_script = "uid://cx2dpugm5qabv"
 
-[sub_resource type="Resource" id="Resource_0tnpc"]
-script = ExtResource("6_u5sy4")
+[sub_resource type="Resource" id="Resource_u5sy4"]
+script = ExtResource("5_u5sy4")
 up_key = "up_arrow"
 down_key = "down_arrow"
 player_data = ExtResource("4_gee14")
+is_ai = true
 metadata/_custom_type_script = "uid://cx2dpugm5qabv"
 
 [node name="Game" type="Node2D" unique_id=1730705536]
@@ -59,31 +59,32 @@ shape = SubResource("WorldBoundaryShape2D_iywne")
 script = ExtResource("2_iywne")
 
 [node name="Right" parent="GoalSystem" unique_id=237100051 instance=ExtResource("2_gee14")]
-position = Vector2(266, 72)
+position = Vector2(251, 72)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalSystem/Right" unique_id=2052643742]
 shape = SubResource("RectangleShape2D_yqjtg")
 
 [node name="Left" parent="GoalSystem" unique_id=452242734 instance=ExtResource("2_gee14")]
-position = Vector2(-5, 72)
+position = Vector2(10, 72)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalSystem/Left" unique_id=164456634]
 position = Vector2(-5, 0)
 shape = SubResource("RectangleShape2D_yqjtg")
 
-[node name="PlayerOne" parent="." unique_id=1074025299 instance=ExtResource("1_uwrxv")]
+[node name="PlayerOne" parent="." unique_id=1074025299 node_paths=PackedStringArray("ball_system") instance=ExtResource("1_uwrxv")]
 position = Vector2(7, 72)
 collision_layer = 3
-player_binding = SubResource("Resource_gee14")
+ball_system = NodePath("../BallSystem")
+paddle_binding = SubResource("Resource_gee14")
 
-[node name="PlayerTwo" parent="." unique_id=1753805544 instance=ExtResource("1_uwrxv")]
+[node name="PlayerTwo" parent="." unique_id=1753805544 node_paths=PackedStringArray("ball_system") instance=ExtResource("1_uwrxv")]
 position = Vector2(249, 72)
 collision_layer = 3
-player_binding = SubResource("Resource_0tnpc")
+ball_system = NodePath("../BallSystem")
+paddle_binding = SubResource("Resource_u5sy4")
+speed = 100.0
 
 [node name="BallSystem" type="Node2D" parent="." unique_id=26258847 node_paths=PackedStringArray("goal_system")]
 script = ExtResource("8_gee14")
 goal_system = NodePath("../GoalSystem")
-balls = Dictionary[String, PackedScene]({
-"ball": ExtResource("2_yqjtg")
-})
+ball_data_path = "res://balls/"

@@ -1,9 +1,8 @@
 extends Node2D
 class_name GoalSystem
 
+
 signal player_won(ball: Ball, player: PlayerData)
-
-
 
 
 func on_player_win(body: Node2D, goal: Goal) -> void:
@@ -23,5 +22,7 @@ func on_player_win(body: Node2D, goal: Goal) -> void:
 
 func _ready() -> void:
 	for child: Node in get_children():
-		if child is Area2D:
-			child.body_entered.connect(on_player_win.bind(child))
+		if not child is Area2D:
+			continue
+		
+		child.body_entered.connect(on_player_win.bind(child))

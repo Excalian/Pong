@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bkadht57160lf"]
 
-[ext_resource type="Script" uid="uid://g4lx5klvt2bk" path="res://scripts/paddle.gd" id="1_3xiby"]
+[ext_resource type="Script" uid="uid://g4lx5klvt2bk" path="res://paddle/paddle.gd" id="1_3xiby"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31swd"]
 radius = 7.0
