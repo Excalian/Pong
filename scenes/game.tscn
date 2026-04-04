@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://qnupjfllbujj" path="res://player/player_one.tres" id="3_u5sy4"]
 [ext_resource type="Resource" uid="uid://c84qjgtw3pg2l" path="res://player/player_two.tres" id="4_gee14"]
 [ext_resource type="Script" uid="uid://cx2dpugm5qabv" path="res://paddle/paddle_binding.gd" id="5_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://dpuycwf1omcvy" path="res://assets/Paddle.png" id="6_gee14"]
 [ext_resource type="Script" uid="uid://dayr77wo7mf5n" path="res://balls/ball_system.gd" id="8_gee14"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lnu2h"]
@@ -26,6 +27,10 @@ up_key = "up_w"
 down_key = "down_s"
 player_data = ExtResource("3_u5sy4")
 metadata/_custom_type_script = "uid://cx2dpugm5qabv"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gee14"]
+radius = 8.0
+height = 46.0
 
 [sub_resource type="Resource" id="Resource_u5sy4"]
 script = ExtResource("5_u5sy4")
@@ -77,12 +82,27 @@ collision_layer = 3
 ball_system = NodePath("../BallSystem")
 paddle_binding = SubResource("Resource_gee14")
 
+[node name="Sprite2D" type="Sprite2D" parent="PlayerOne" unique_id=1600273530]
+texture = ExtResource("6_gee14")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOne" unique_id=738812557]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_gee14")
+
 [node name="PlayerTwo" parent="." unique_id=1753805544 node_paths=PackedStringArray("ball_system") instance=ExtResource("1_uwrxv")]
 position = Vector2(249, 72)
 collision_layer = 3
 ball_system = NodePath("../BallSystem")
 paddle_binding = SubResource("Resource_u5sy4")
 speed = 70.0
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerTwo" unique_id=996318637]
+texture = ExtResource("6_gee14")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTwo" unique_id=956410703]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_gee14")
 
 [node name="BallSystem" type="Node2D" parent="." unique_id=26258847 node_paths=PackedStringArray("goal_system")]
 script = ExtResource("8_gee14")

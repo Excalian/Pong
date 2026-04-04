@@ -2,15 +2,6 @@
 
 [ext_resource type="Script" uid="uid://g4lx5klvt2bk" path="res://paddle/paddle.gd" id="1_3xiby"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31swd"]
-radius = 7.0
-height = 42.0
-
 [node name="Paddle" type="CharacterBody2D" unique_id=1074025299]
 collision_mask = 2
 script = ExtResource("1_3xiby")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=362143183]
-shape = SubResource("CapsuleShape2D_31swd")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2058725162]
