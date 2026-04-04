@@ -7,13 +7,13 @@ class_name Paddle
 func _ready() -> void:
 	modulate = player_binding.player_data.paddle_color
 
-func _physics_process(_delta) -> void:
-	var dir := 0.0
+func _physics_process(_delta: float) -> void:
+	var direction: float = 0.0
 	
 	if Input.is_action_pressed(player_binding.up_key):
-		dir -= 1
+		direction -= 1
 	if Input.is_action_pressed(player_binding.down_key):
-		dir += 1
+		direction += 1
 	
-	velocity = Vector2(0, dir * speed)
+	velocity = Vector2(0, direction * speed)
 	move_and_slide()

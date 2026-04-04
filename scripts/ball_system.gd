@@ -13,7 +13,7 @@ func _ready() -> void:
 	spawn_ball()
 
 
-func _on_player_won(ball: Ball, _player: PlayerData):
+func _on_player_won(ball: Ball, _player: PlayerData) -> void:
 	ball.queue_free()
 	call_deferred("spawn_ball", _get_random_ball_name())
 

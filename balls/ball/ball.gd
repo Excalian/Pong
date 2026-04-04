@@ -2,23 +2,23 @@ extends CharacterBody2D
 class_name Ball
 
 
-const speed_limit := 400
-const speed_increase_limit := 10
+const speed_limit: int = 400
+const speed_increase_limit: int = 10
 
-@export_range(0, speed_limit) var speed := 50
-@export_range(0, speed_limit) var speed_increase_rate := 2
+@export_range(0, speed_limit) var speed: int = 50
+@export_range(0, speed_limit) var speed_increase_rate: int = 2
 
-var entered_goal := false
+var entered_goal: bool= false
 
-var _owned_player := PlayerData.new()
-var _direction := _get_random_direction()
+var _owned_player: PlayerData = PlayerData.new()
+var _direction: Vector2 = _get_random_direction()
 
 
-func _physics_process(delta) -> void:
-	var collision := move_and_collide(_direction * speed * delta)
+func _physics_process(delta: float) -> void:
+	var collision: KinematicCollision2D = move_and_collide(_direction * speed * delta)
 	
 	if collision:
-		var body = collision.get_collider()
+		var body: Object = collision.get_collider()
 		if body is Paddle:
 			set_player(body.player_binding.player_data)
 			speed_increase_rate = min(speed_increase_rate * 1.2, speed_increase_limit)
