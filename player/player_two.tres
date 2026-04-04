@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://c84qjgtw3pg2l"]
+
+[ext_resource type="Script" uid="uid://ck4et28lukxq" path="res://player/player_data.gd" id="1_sckls"]
+
+[resource]
+script = ExtResource("1_sckls")
+name = "Player Two"
+paddle_color = Color(1, 0, 0, 1)
+metadata/_custom_type_script = "uid://ck4et28lukxq"

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dhccamfjmxcps"]
+
+[ext_resource type="Script" uid="uid://d2eos2ueqw1ee" path="res://scripts/goal.gd" id="1_jbojv"]
+
+[node name="Goal" type="Area2D" unique_id=237100051]
+input_pickable = false
+script = ExtResource("1_jbojv")
