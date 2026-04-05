@@ -35,42 +35,6 @@ metadata/_custom_type_script = "uid://cx2dpugm5qabv"
 radius = 8.0
 height = 46.0
 
-[sub_resource type="Animation" id="Animation_gee14"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_0tnpc"]
-resource_name = "flash"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 0.6597539),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtaks"]
-_data = {
-&"RESET": SubResource("Animation_gee14"),
-&"flash": SubResource("Animation_0tnpc")
-}
-
 [sub_resource type="Resource" id="Resource_u5sy4"]
 script = ExtResource("5_u5sy4")
 up_key = "up_arrow"
@@ -129,9 +93,6 @@ texture = ExtResource("6_gee14")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOne" unique_id=738812557]
 position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_gee14")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerOne" unique_id=328367798]
-libraries/ = SubResource("AnimationLibrary_vtaks")
 
 [node name="PlayerTwo" parent="." unique_id=1753805544 node_paths=PackedStringArray("ball_system", "goal_system") instance=ExtResource("1_uwrxv")]
 position = Vector2(249, 72)
