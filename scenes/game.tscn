@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://qnupjfllbujj" path="res://player/player_one.tres" id="3_u5sy4"]
 [ext_resource type="Resource" uid="uid://c84qjgtw3pg2l" path="res://player/player_two.tres" id="4_gee14"]
 [ext_resource type="Script" uid="uid://cx2dpugm5qabv" path="res://paddle/paddle_binding.gd" id="5_u5sy4"]
+[ext_resource type="Shader" uid="uid://bu8uggk00jy1" path="res://paddle/flash.gdshader" id="6_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://dpuycwf1omcvy" path="res://assets/Paddle.png" id="6_gee14"]
 [ext_resource type="Script" uid="uid://dayr77wo7mf5n" path="res://balls/ball_system.gd" id="8_gee14"]
 
@@ -19,7 +20,7 @@ normal = Vector2(0, 1)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yqjtg"]
-size = Vector2(10, 144)
+size = Vector2(7.5, 144)
 
 [sub_resource type="Resource" id="Resource_gee14"]
 script = ExtResource("5_u5sy4")
@@ -28,9 +29,47 @@ down_key = "down_s"
 player_data = ExtResource("3_u5sy4")
 metadata/_custom_type_script = "uid://cx2dpugm5qabv"
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vtaks"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gee14"]
 radius = 8.0
 height = 46.0
+
+[sub_resource type="Animation" id="Animation_gee14"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0tnpc"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.6597539),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtaks"]
+_data = {
+&"RESET": SubResource("Animation_gee14"),
+&"flash": SubResource("Animation_0tnpc")
+}
 
 [sub_resource type="Resource" id="Resource_u5sy4"]
 script = ExtResource("5_u5sy4")
@@ -64,37 +103,44 @@ shape = SubResource("WorldBoundaryShape2D_iywne")
 script = ExtResource("2_iywne")
 
 [node name="Right" parent="GoalSystem" unique_id=237100051 instance=ExtResource("2_gee14")]
-position = Vector2(251, 72)
+position = Vector2(252.25, 72)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalSystem/Right" unique_id=2052643742]
 shape = SubResource("RectangleShape2D_yqjtg")
 
 [node name="Left" parent="GoalSystem" unique_id=452242734 instance=ExtResource("2_gee14")]
-position = Vector2(10, 72)
+position = Vector2(3.75, 72)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalSystem/Left" unique_id=164456634]
-position = Vector2(-5, 0)
 shape = SubResource("RectangleShape2D_yqjtg")
 
-[node name="PlayerOne" parent="." unique_id=1074025299 node_paths=PackedStringArray("ball_system") instance=ExtResource("1_uwrxv")]
+[node name="PlayerOne" parent="." unique_id=1074025299 node_paths=PackedStringArray("ball_system", "goal_system") instance=ExtResource("1_uwrxv")]
 position = Vector2(7, 72)
 collision_layer = 3
 ball_system = NodePath("../BallSystem")
+goal_system = NodePath("../GoalSystem")
 paddle_binding = SubResource("Resource_gee14")
+flash_shader = ExtResource("6_0tnpc")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerOne" unique_id=1600273530]
+material = SubResource("ShaderMaterial_vtaks")
 texture = ExtResource("6_gee14")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOne" unique_id=738812557]
 position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_gee14")
 
-[node name="PlayerTwo" parent="." unique_id=1753805544 node_paths=PackedStringArray("ball_system") instance=ExtResource("1_uwrxv")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerOne" unique_id=328367798]
+libraries/ = SubResource("AnimationLibrary_vtaks")
+
+[node name="PlayerTwo" parent="." unique_id=1753805544 node_paths=PackedStringArray("ball_system", "goal_system") instance=ExtResource("1_uwrxv")]
 position = Vector2(249, 72)
 collision_layer = 3
 ball_system = NodePath("../BallSystem")
+goal_system = NodePath("../GoalSystem")
 paddle_binding = SubResource("Resource_u5sy4")
 speed = 70.0
+flash_shader = ExtResource("6_0tnpc")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerTwo" unique_id=996318637]
 texture = ExtResource("6_gee14")
