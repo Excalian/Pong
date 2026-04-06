@@ -89,6 +89,7 @@ collision_layer = 3
 ball_system = NodePath("../BallSystem")
 goal_system = NodePath("../GoalSystem")
 paddle_binding = SubResource("Resource_gee14")
+speed = 60.0
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerOne" unique_id=1600273530]
 material = SubResource("ShaderMaterial_vtaks")
@@ -104,7 +105,7 @@ collision_layer = 3
 ball_system = NodePath("../BallSystem")
 goal_system = NodePath("../GoalSystem")
 paddle_binding = SubResource("Resource_u5sy4")
-speed = 70.0
+speed = 65.0
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerTwo" unique_id=996318637]
 texture = ExtResource("6_gee14")

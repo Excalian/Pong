@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bhu8f2ynasb3i"]
+
+[ext_resource type="Script" uid="uid://dcboasdk7x3v8" path="res://scripts/score_display.gd" id="1_6a1lc"]
+[ext_resource type="Shader" uid="uid://cqude7bpmu2d1" path="res://shaders/inverse.gdshader" id="1_6km3m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7363x"]
+shader = ExtResource("1_6km3m")
+
+[node name="LeftDisplay" type="Label" unique_id=988543723]
+z_index = 100
+material = SubResource("ShaderMaterial_7363x")
+offset_right = 10.0
+offset_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+language = "en_US"
+script = ExtResource("1_6a1lc")

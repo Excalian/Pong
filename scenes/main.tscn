@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ceu771rqxpk0b"]
+
+[ext_resource type="PackedScene" uid="uid://djwewioeynbpj" path="res://scenes/game.tscn" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://ber4eocaqate1" path="res://ui/ui_sub_viewport_container.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://6bjhn21uumj5" path="res://ui/pause_menu.tscn" id="3_jyhfs"]
+
+[node name="Main" type="Node2D" unique_id=1646064731]
+
+[node name="Game" parent="." unique_id=1730705536 instance=ExtResource("1_sugp2")]
+
+[node name="UISubViewportContainer" parent="." unique_id=1333244190 instance=ExtResource("2_sugp2")]
+
+[node name="PauseMenu" parent="UISubViewportContainer" unique_id=316338034 instance=ExtResource("3_jyhfs")]
