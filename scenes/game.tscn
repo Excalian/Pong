@@ -56,6 +56,7 @@ mouse_target = true
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1947818733]
 handle_input_locally = false
+canvas_item_default_texture_filter = 0
 size = Vector2i(274, 154)
 render_target_update_mode = 4
 
