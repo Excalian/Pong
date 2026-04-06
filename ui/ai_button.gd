@@ -1,9 +1,4 @@
-extends CanvasLayer
-class_name PauseMenu
-
-
-signal opened()
-signal closed()
+extends CheckButton
 
 
 # Called when the node enters the scene tree for the first time.

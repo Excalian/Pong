@@ -1,5 +1,4 @@
 extends SubViewportContainer
-class_name UISubViewportContainer
 
 @onready var sub_viewport: SubViewport = $SubViewport
 

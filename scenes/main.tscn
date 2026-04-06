@@ -1,13 +1,126 @@
 [gd_scene format=3 uid="uid://ceu771rqxpk0b"]
 
 [ext_resource type="PackedScene" uid="uid://djwewioeynbpj" path="res://scenes/game.tscn" id="1_sugp2"]
-[ext_resource type="PackedScene" uid="uid://ber4eocaqate1" path="res://ui/ui_sub_viewport_container.tscn" id="2_sugp2"]
-[ext_resource type="PackedScene" uid="uid://6bjhn21uumj5" path="res://ui/pause_menu.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bhu8f2ynasb3i" path="res://ui/score_display.tscn" id="2_jyhfs"]
+[ext_resource type="Script" uid="uid://djavu7avmv05c" path="res://ui/pause_menu.gd" id="2_tbgi4"]
+[ext_resource type="Resource" uid="uid://qnupjfllbujj" path="res://player/player_one.tres" id="3_tbgi4"]
+[ext_resource type="Resource" uid="uid://c84qjgtw3pg2l" path="res://player/player_two.tres" id="4_tefeu"]
+[ext_resource type="StyleBox" uid="uid://coko72g8cp6uc" path="res://ui/pink_style_box.tres" id="5_85g3d"]
+[ext_resource type="Script" uid="uid://ckbww04m3t1oy" path="res://ui/pause_menu_panel.gd" id="6_choun"]
+[ext_resource type="StyleBox" uid="uid://bt8351uboibmu" path="res://ui/red_slant_style_box.tres" id="7_ya4ey"]
+[ext_resource type="StyleBox" uid="uid://n4dhncqedkqb" path="res://ui/blue_slant_style_box.tres" id="8_eb6dy"]
+[ext_resource type="Script" uid="uid://bmv474nen1yj4" path="res://ui/ai_button.gd" id="9_choun"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trceg"]
+bg_color = Color(0, 0, 0, 0.36862746)
+border_color = Color(0.8, 0.8, 0.8, 0)
 
 [node name="Main" type="Node2D" unique_id=1646064731]
 
-[node name="Game" parent="." unique_id=1730705536 instance=ExtResource("1_sugp2")]
+[node name="GameViewportContainer" parent="." unique_id=1593627339 instance=ExtResource("1_sugp2")]
+offset_right = 1920.0
+offset_bottom = 1080.0
 
-[node name="UISubViewportContainer" parent="." unique_id=1333244190 instance=ExtResource("2_sugp2")]
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=843205544]
+process_mode = 3
+visible = false
+script = ExtResource("2_tbgi4")
 
-[node name="PauseMenu" parent="UISubViewportContainer" unique_id=316338034 instance=ExtResource("3_jyhfs")]
+[node name="Control" type="Control" parent="PauseMenu" unique_id=394147007]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="PauseMenu/Control" unique_id=657828832]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_trceg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/Control/Panel" unique_id=807201704]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1919.0
+offset_bottom = 1079.0
+
+[node name="LeftDisplay" parent="PauseMenu/Control/Panel/HBoxContainer" unique_id=225463394 instance=ExtResource("2_jyhfs")]
+layout_mode = 2
+horizontal_alignment = 0
+player = ExtResource("3_tbgi4")
+
+[node name="Panel" type="Panel" parent="PauseMenu/Control/Panel/HBoxContainer" unique_id=583716593 node_paths=PackedStringArray("left_display", "right_display")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+theme_override_styles/panel = ExtResource("5_85g3d")
+script = ExtResource("6_choun")
+left_display = NodePath("../LeftDisplay")
+right_display = NodePath("../RightDisplay")
+red = ExtResource("7_ya4ey")
+pink = ExtResource("5_85g3d")
+blue = ExtResource("8_eb6dy")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/Control/Panel/HBoxContainer/Panel" unique_id=513414985]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Menu" type="VBoxContainer" parent="PauseMenu/Control/Panel/HBoxContainer/Panel/MarginContainer" unique_id=1484188156]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="PauseMenu/Control/Panel/HBoxContainer/Panel/MarginContainer/Menu" unique_id=1797244262]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 160
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PauseMenu/Control/Panel/HBoxContainer/Panel/MarginContainer/Menu" unique_id=1225874740]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+draw_focus_border = true
+horizontal_scroll_mode = 0
+scroll_hint_mode = 3
+tile_scroll_hint = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/Control/Panel/HBoxContainer/Panel/MarginContainer/Menu/ScrollContainer" unique_id=973233213]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/Control/Panel/HBoxContainer/Panel/MarginContainer/Menu/ScrollContainer/MarginContainer" unique_id=1613320555]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ai" type="CheckButton" parent="PauseMenu/Control/Panel/HBoxContainer/Panel/MarginContainer/Menu/ScrollContainer/MarginContainer/VBoxContainer" unique_id=542220700]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 80
+text = "Right Player AI?"
+alignment = 1
+script = ExtResource("9_choun")
+
+[node name="RightDisplay" parent="PauseMenu/Control/Panel/HBoxContainer" unique_id=988543723 instance=ExtResource("2_jyhfs")]
+layout_mode = 2
+horizontal_alignment = 2
+player = ExtResource("4_tefeu")

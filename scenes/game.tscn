@@ -21,7 +21,7 @@ normal = Vector2(0, 1)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yqjtg"]
-size = Vector2(7.5, 144)
+size = Vector2(7.5, 154)
 
 [sub_resource type="Resource" id="Resource_gee14"]
 script = ExtResource("5_u5sy4")
@@ -44,46 +44,61 @@ player_data = ExtResource("4_gee14")
 is_ai = true
 metadata/_custom_type_script = "uid://cx2dpugm5qabv"
 
-[node name="Game" type="Node2D" unique_id=1730705536]
+[node name="GameViewportContainer" type="SubViewportContainer" unique_id=1593627339]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 7
+mouse_target = true
 
-[node name="Top" type="StaticBody2D" parent="." unique_id=1588035850]
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1947818733]
+handle_input_locally = false
+size = Vector2i(274, 154)
+render_target_update_mode = 4
+
+[node name="Game" type="Node2D" parent="SubViewport" unique_id=1730705536]
+
+[node name="Top" type="StaticBody2D" parent="SubViewport/Game" unique_id=1588035850]
+position = Vector2(137, 0)
 collision_layer = 3
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_lnu2h")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Top" unique_id=1982712491]
-position = Vector2(128, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewport/Game/Top" unique_id=1982712491]
 shape = SubResource("WorldBoundaryShape2D_lbhrr")
 
-[node name="Bottom" type="StaticBody2D" parent="." unique_id=135657359]
+[node name="Bottom" type="StaticBody2D" parent="SubViewport/Game" unique_id=135657359]
+position = Vector2(137, 154)
 collision_layer = 3
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_lnu2h")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom" unique_id=152508427]
-position = Vector2(128, 144)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewport/Game/Bottom" unique_id=152508427]
 shape = SubResource("WorldBoundaryShape2D_iywne")
 
-[node name="GoalSystem" type="Node2D" parent="." unique_id=1061784649]
+[node name="GoalSystem" type="Node2D" parent="SubViewport/Game" unique_id=1061784649]
 script = ExtResource("2_iywne")
 
-[node name="Right" parent="GoalSystem" unique_id=237100051 instance=ExtResource("2_gee14")]
-position = Vector2(252.25, 72)
-player = ExtResource("4_gee14")
-flash_shader = ExtResource("6_0tnpc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalSystem/Right" unique_id=2052643742]
-shape = SubResource("RectangleShape2D_yqjtg")
-
-[node name="Left" parent="GoalSystem" unique_id=452242734 instance=ExtResource("2_gee14")]
-position = Vector2(3.75, 72)
+[node name="Right" parent="SubViewport/Game/GoalSystem" unique_id=237100051 instance=ExtResource("2_gee14")]
+position = Vector2(270.25, 77)
 player = ExtResource("3_u5sy4")
 flash_shader = ExtResource("6_0tnpc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalSystem/Left" unique_id=164456634]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewport/Game/GoalSystem/Right" unique_id=2052643742]
 shape = SubResource("RectangleShape2D_yqjtg")
 
-[node name="PlayerOne" parent="." unique_id=1074025299 node_paths=PackedStringArray("ball_system", "goal_system") instance=ExtResource("1_uwrxv")]
+[node name="Left" parent="SubViewport/Game/GoalSystem" unique_id=452242734 instance=ExtResource("2_gee14")]
+position = Vector2(3.75, 77)
+player = ExtResource("4_gee14")
+flash_shader = ExtResource("6_0tnpc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewport/Game/GoalSystem/Left" unique_id=164456634]
+shape = SubResource("RectangleShape2D_yqjtg")
+
+[node name="PlayerOne" parent="SubViewport/Game" unique_id=1074025299 node_paths=PackedStringArray("ball_system", "goal_system") instance=ExtResource("1_uwrxv")]
 position = Vector2(7, 72)
 collision_layer = 3
 ball_system = NodePath("../BallSystem")
@@ -91,31 +106,31 @@ goal_system = NodePath("../GoalSystem")
 paddle_binding = SubResource("Resource_gee14")
 speed = 60.0
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerOne" unique_id=1600273530]
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/PlayerOne" unique_id=1600273530]
 material = SubResource("ShaderMaterial_vtaks")
 texture = ExtResource("6_gee14")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerOne" unique_id=738812557]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewport/Game/PlayerOne" unique_id=738812557]
 position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_gee14")
 
-[node name="PlayerTwo" parent="." unique_id=1753805544 node_paths=PackedStringArray("ball_system", "goal_system") instance=ExtResource("1_uwrxv")]
-position = Vector2(249, 72)
+[node name="PlayerTwo" parent="SubViewport/Game" unique_id=1753805544 node_paths=PackedStringArray("ball_system", "goal_system") instance=ExtResource("1_uwrxv")]
+position = Vector2(267, 72)
 collision_layer = 3
 ball_system = NodePath("../BallSystem")
 goal_system = NodePath("../GoalSystem")
 paddle_binding = SubResource("Resource_u5sy4")
 speed = 65.0
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerTwo" unique_id=996318637]
+[node name="Sprite2D" type="Sprite2D" parent="SubViewport/Game/PlayerTwo" unique_id=996318637]
 texture = ExtResource("6_gee14")
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTwo" unique_id=956410703]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewport/Game/PlayerTwo" unique_id=956410703]
 position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_gee14")
 
-[node name="BallSystem" type="Node2D" parent="." unique_id=26258847 node_paths=PackedStringArray("goal_system")]
+[node name="BallSystem" type="Node2D" parent="SubViewport/Game" unique_id=26258847 node_paths=PackedStringArray("goal_system")]
 script = ExtResource("8_gee14")
 goal_system = NodePath("../GoalSystem")
 ball = ExtResource("10_vtaks")
