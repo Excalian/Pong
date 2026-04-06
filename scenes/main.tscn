@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://ckbww04m3t1oy" path="res://ui/pause_menu_panel.gd" id="6_choun"]
 [ext_resource type="StyleBox" uid="uid://bt8351uboibmu" path="res://ui/red_slant_style_box.tres" id="7_ya4ey"]
 [ext_resource type="StyleBox" uid="uid://n4dhncqedkqb" path="res://ui/blue_slant_style_box.tres" id="8_eb6dy"]
-[ext_resource type="Script" uid="uid://bmv474nen1yj4" path="res://ui/ai_button.gd" id="9_choun"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trceg"]
 bg_color = Color(0, 0, 0, 0.36862746)
@@ -93,6 +92,7 @@ text = "Paused"
 horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PauseMenu/Control/Panel/HBoxContainer/Panel/MarginContainer/Menu" unique_id=1225874740]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
@@ -111,14 +111,6 @@ theme_override_constants/margin_right = 10
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="ai" type="CheckButton" parent="PauseMenu/Control/Panel/HBoxContainer/Panel/MarginContainer/Menu/ScrollContainer/MarginContainer/VBoxContainer" unique_id=542220700]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 80
-text = "Right Player AI?"
-alignment = 1
-script = ExtResource("9_choun")
 
 [node name="RightDisplay" parent="PauseMenu/Control/Panel/HBoxContainer" unique_id=988543723 instance=ExtResource("2_jyhfs")]
 layout_mode = 2
