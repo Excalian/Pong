@@ -25,7 +25,7 @@ Optionally can be set to a "robot".
 
 ## Web-Export
 
-Not ready yet!
+[excalian.itch.io/pong](https://excalian.itch.io/pong)
 
 <br>
 
