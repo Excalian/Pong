@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_sckls")
 name = "Player Two"
-paddle_color = Color(1, 0, 0, 1)
+color = Color(1, 0, 0, 1)
 metadata/_custom_type_script = "uid://ck4et28lukxq"

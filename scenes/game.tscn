@@ -6,9 +6,10 @@
 [ext_resource type="Resource" uid="uid://qnupjfllbujj" path="res://player/player_one.tres" id="3_u5sy4"]
 [ext_resource type="Resource" uid="uid://c84qjgtw3pg2l" path="res://player/player_two.tres" id="4_gee14"]
 [ext_resource type="Script" uid="uid://cx2dpugm5qabv" path="res://paddle/paddle_binding.gd" id="5_u5sy4"]
-[ext_resource type="Shader" uid="uid://bu8uggk00jy1" path="res://paddle/flash.gdshader" id="6_0tnpc"]
+[ext_resource type="Shader" uid="uid://bu8uggk00jy1" path="res://shaders/flash.gdshader" id="6_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://dpuycwf1omcvy" path="res://assets/Paddle.png" id="6_gee14"]
 [ext_resource type="Script" uid="uid://dayr77wo7mf5n" path="res://balls/ball_system.gd" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://de78u6sepvyir" path="res://balls/ball/ball.tscn" id="10_vtaks"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lnu2h"]
 friction = 0.0
@@ -68,12 +69,16 @@ script = ExtResource("2_iywne")
 
 [node name="Right" parent="GoalSystem" unique_id=237100051 instance=ExtResource("2_gee14")]
 position = Vector2(252.25, 72)
+player = ExtResource("4_gee14")
+flash_shader = ExtResource("6_0tnpc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalSystem/Right" unique_id=2052643742]
 shape = SubResource("RectangleShape2D_yqjtg")
 
 [node name="Left" parent="GoalSystem" unique_id=452242734 instance=ExtResource("2_gee14")]
 position = Vector2(3.75, 72)
+player = ExtResource("3_u5sy4")
+flash_shader = ExtResource("6_0tnpc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalSystem/Left" unique_id=164456634]
 shape = SubResource("RectangleShape2D_yqjtg")
@@ -84,7 +89,6 @@ collision_layer = 3
 ball_system = NodePath("../BallSystem")
 goal_system = NodePath("../GoalSystem")
 paddle_binding = SubResource("Resource_gee14")
-flash_shader = ExtResource("6_0tnpc")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerOne" unique_id=1600273530]
 material = SubResource("ShaderMaterial_vtaks")
@@ -101,7 +105,6 @@ ball_system = NodePath("../BallSystem")
 goal_system = NodePath("../GoalSystem")
 paddle_binding = SubResource("Resource_u5sy4")
 speed = 70.0
-flash_shader = ExtResource("6_0tnpc")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerTwo" unique_id=996318637]
 texture = ExtResource("6_gee14")
@@ -114,4 +117,4 @@ shape = SubResource("CapsuleShape2D_gee14")
 [node name="BallSystem" type="Node2D" parent="." unique_id=26258847 node_paths=PackedStringArray("goal_system")]
 script = ExtResource("8_gee14")
 goal_system = NodePath("../GoalSystem")
-ball_data_path = "res://balls/"
+ball = ExtResource("10_vtaks")

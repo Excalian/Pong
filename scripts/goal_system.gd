@@ -13,7 +13,7 @@ func on_player_win(body: Node2D, goal: Goal) -> void:
 		return
 	body.entered_goal = true
 	
-	var player: PlayerData = body._owned_player
+	var player: PlayerData = goal.player
 	player.score += goal.points_to_give
 	print(player.name, ": ", player.score)
 	

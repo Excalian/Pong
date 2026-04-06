@@ -11,7 +11,6 @@ const SPEED_INCREASE_LIMIT: int = 10
 var entered_goal: bool= false
 
 var _bounces_not_on_paddle: int = 0
-var _owned_player: PlayerData = PlayerData.new()
 var _direction: Vector2 = _get_random_direction()
 
 
@@ -21,7 +20,6 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var body: Object = collision.get_collider()
 		if body is Paddle:
-			set_owned_player(body.paddle_binding.player_data)
 			speed_increase_rate = min(speed_increase_rate * 1.2, SPEED_INCREASE_LIMIT)
 			_bounces_not_on_paddle = 0
 		else:
@@ -38,8 +36,3 @@ func _get_random_direction() -> Vector2:
 	var x: int = [-1, 1].pick_random()
 	var y: float = randf_range(-1.0, 1.0)
 	return Vector2(x, y).normalized()
-
-
-func set_owned_player(player: PlayerData) -> void:
-	_owned_player = player
-	modulate = player.paddle_color
