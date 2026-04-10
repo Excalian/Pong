@@ -13,13 +13,15 @@ A simple Pong-copy that I made to better understand Godot
 * **S**
   - Move Down
 
-### Right Paddle (Red) - Currently locked at robot
+### Right Paddle (Red) - Currently locked at robot, so no controls work
 Optionally can be set to a "robot".
 
 * **Up Arrow**
   - Move Up
 * **Down Arrow**
   - Move Down
+
+### Pause Menu (Tab)
 
 <br>
 
