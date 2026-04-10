@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://cpdhbox7ceygl"]
+
+[ext_resource type="Script" uid="uid://d24tygrjy6p7w" path="res://ui/help_button.gd" id="1_0dkrt"]
+[ext_resource type="Script" uid="uid://cjvqok4uypq5w" path="res://ui/play_game_button.gd" id="1_t7e0r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gl0q7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t7e0r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0dkrt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wk0pr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rmr83"]
+
+[node name="Main Menu" type="Control" unique_id=503402493]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main" type="PanelContainer" parent="." unique_id=957039707]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Main" unique_id=1949818406]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/MarginContainer" unique_id=942047269]
+layout_mode = 2
+
+[node name="TitleVBox" type="VBoxContainer" parent="Main/MarginContainer/HBoxContainer" unique_id=1858639754]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="Main/MarginContainer/HBoxContainer/TitleVBox" unique_id=1734176755]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 187
+text = "Pong"
+
+[node name="Label" type="Label" parent="Main/MarginContainer/HBoxContainer/TitleVBox" unique_id=89484302]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 44
+text = "By Lino"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/MarginContainer/HBoxContainer" unique_id=1423961588]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="help_button" type="Button" parent="Main/MarginContainer/HBoxContainer/VBoxContainer" unique_id=974090519 node_paths=PackedStringArray("help_menu")]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.8392157, 0, 0.11764706, 1)
+theme_override_colors/font_focus_color = Color(0.63671696, 0, 0.07852062, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.63529414, 0, 0.078431375, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.5489626, 0.5489626, 0.54896253, 1)
+theme_override_font_sizes/font_size = 81
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gl0q7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_t7e0r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0dkrt")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wk0pr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rmr83")
+toggle_mode = true
+text = "User Manual"
+flat = true
+alignment = 2
+icon_alignment = 1
+script = ExtResource("1_0dkrt")
+help_menu = NodePath("../../../../../Help")
+
+[node name="play_game_button" type="Button" parent="Main/MarginContainer/HBoxContainer/VBoxContainer" unique_id=209265768]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18053418, 0.4590659, 0.7272458, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 175
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gl0q7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_t7e0r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0dkrt")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_wk0pr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rmr83")
+text = "Play Game"
+flat = true
+script = ExtResource("1_t7e0r")
+
+[node name="Help" type="PanelContainer" parent="." unique_id=904923829]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.45
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Help" unique_id=460511505]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Label" type="Label" parent="Help/MarginContainer" unique_id=1840450004]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 34
+text = "W/S for movement of the left/red paddle. Tab for score and pause menu. Gl and have fun!
+- Lino"
+autowrap_mode = 2
